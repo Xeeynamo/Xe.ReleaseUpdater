@@ -1,5 +1,7 @@
 using NSubstitute;
 using NSubstitute.Core.Arguments;
+using System.Threading.Tasks;
+using Xe.VersionCheck.Model;
 using Xunit;
 
 namespace Xe.VersionCheck.Tests
@@ -25,9 +27,12 @@ namespace Xe.VersionCheck.Tests
             var VersionCheck = new VersionChecker(checkCurrentVersion, checkLatestRelease);
 
             checkCurrentVersion.GetCurrentVersion().Returns(x => current);
-            checkLatestRelease.GetLatestVersion().Returns(x => latest);
-;
-            Assert.True(VersionCheck.IsUpdateAvailable);
+			checkLatestRelease.GetLatestReleaseAsync().Returns(x => Task.FromResult(new ReleaseVersion
+			{
+				Version = Version.Parse(latest)
+			}));
+
+			Assert.True(VersionCheck.IsUpdateAvailable);
         }
 
         [Theory]
@@ -47,7 +52,10 @@ namespace Xe.VersionCheck.Tests
             var VersionCheck = new VersionChecker(checkCurrentVersion, checkLatestRelease);
 
             checkCurrentVersion.GetCurrentVersion().Returns(x => current);
-            checkLatestRelease.GetLatestVersion().Returns(x => latest);
+            checkLatestRelease.GetLatestReleaseAsync().Returns(x => Task.FromResult(new ReleaseVersion
+			{
+				Version = Version.Parse(latest)
+			}));
 
             Assert.False(VersionCheck.IsUpdateAvailable);
         }

@@ -52,7 +52,7 @@ namespace Xe.VersionCheck
 
         public override string ToString()
         {
-            return $"v{Major}.{Minor}.{Revision}.{Build}";
+            return $"v{Major}.{Minor}.{Revision}";
         }
 
         public static bool operator ==(Version a, Version b)
@@ -72,30 +72,41 @@ namespace Xe.VersionCheck
         {
             return (a.Major > b.Major) ||
                    (a.Major == b.Major && a.Minor > b.Minor) ||
-                   (a.Minor == b.Minor && a.Revision > b.Revision);
+				   (a.Minor == b.Minor && a.Revision > b.Revision) ||
+				   (a.Revision == b.Revision && a.Build > b.Build);
         }
 
         public static bool operator <(Version a, Version b)
         {
             return (a.Major < b.Major) ||
                    (a.Major == b.Major && a.Minor < b.Minor) ||
-                   (a.Minor == b.Minor && a.Revision < b.Revision);
+				   (a.Minor == b.Minor && a.Revision < b.Revision) ||
+				   (a.Revision == b.Revision && a.Build < b.Build);
         }
 
         public static bool operator >=(Version a, Version b)
         {
             return (a.Major > b.Major) ||
                    (a.Major == b.Major && a.Minor > b.Minor) ||
-                   (a.Minor == b.Minor && a.Revision >= b.Revision);
-        }
+				   (a.Minor == b.Minor && a.Revision > b.Revision) ||
+				   (a.Revision == b.Revision && a.Build >= b.Build);
+		}
 
         public static bool operator <=(Version a, Version b)
         {
             return (a.Major < b.Major) ||
                    (a.Major == b.Major && a.Minor < b.Minor) ||
                    (a.Minor == b.Minor && a.Revision < b.Revision) ||
-                   (a.Revision == b.Revision && a.Build <= b.Build);
+				   (a.Revision == b.Revision && a.Build <= b.Build);
         }
+
+		public static Version Parse(string strVersion)
+		{
+			if (!TryParse(strVersion, out var version))
+				throw new FormatException($"{version} is not a valid version.");
+
+			return version;
+		}
 
         public static bool TryParse(string strVersion, out Version version)
         {
@@ -118,7 +129,7 @@ namespace Xe.VersionCheck
                 return false;
             if (splitNumbers.Length > 2 && !int.TryParse(splitNumbers[2], out revision))
                 return false;
-            if (splitNumbers.Length > 3 && !int.TryParse(splitNumbers[3], out revision))
+            if (splitNumbers.Length > 3 && !int.TryParse(splitNumbers[3], out build))
                 return false;
 
             version = new Version(major, minor, revision, build);

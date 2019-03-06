@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Xe.VersionCheck.Model;
 
 namespace Xe.VersionCheck
 {
@@ -17,10 +19,21 @@ namespace Xe.VersionCheck
 
         public string CurrentVersion => _checkCurrentVersion.GetCurrentVersion();
 
-        public string LatestVersion => _checkLatestVersion.GetLatestVersion();
+        public string LatestVersion => _checkLatestVersion.GetLatestReleaseAsync().Result.Version?.ToString();
 
-        public bool IsUpdateAvailable => Version.TryParse(CurrentVersion, out var cur) &&
-                                       Version.TryParse(LatestVersion, out var latest) &&
-                                       cur < latest;
+        public bool IsUpdateAvailable => CurrentVersion != null && Version.TryParse(CurrentVersion, out var cur) &&
+			cur < _checkLatestVersion.GetLatestReleaseAsync().Result.Version;
+
+		public async Task<ReleaseVersion> GetLatestVersionAsync()
+		{
+			var lastRelease = await _checkLatestVersion.GetLatestReleaseAsync();
+			if (Version.TryParse(CurrentVersion, out var currentVersion) &&
+				lastRelease.Version > currentVersion)
+			{
+				return lastRelease;
+			}
+
+			return lastRelease;
+		}
     }
 }

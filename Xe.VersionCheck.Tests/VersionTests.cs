@@ -26,6 +26,7 @@ namespace Xe.VersionCheck.Tests
         [InlineData("1", 1, 0, 0)]
         [InlineData("1.0", 1, 0, 0)]
         [InlineData("1.0.0", 1, 0, 0)]
+        [InlineData("2.4.6.8", 2, 4, 6)]
         [InlineData("v2.34.567", 2, 34, 567)]
         [InlineData("02.034.506", 2, 34, 506)]
         public void ShouldParseVersion(string strVersion, int major, int minor, int revision)
