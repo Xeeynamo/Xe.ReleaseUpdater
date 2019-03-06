@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xe.VersionCheck", "Xe.Versi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xe.VersionCheck.Tests", "Xe.VersionCheck.Tests\Xe.VersionCheck.Tests.csproj", "{6A6235EC-58AC-4902-B033-46510379AC75}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xe.VersionCheck.Github", "Xe.VersionCheck.Github\Xe.VersionCheck.Github.csproj", "{03A2C006-8C6C-47A3-88AE-D56A2A498804}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xe.Http", "Xe.Http\Xe.Http.csproj", "{1E974233-A40C-4CCF-A921-49FAAB8D0981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xe.Http", "Xe.Http\Xe.Http.csproj", "{1E974233-A40C-4CCF-A921-49FAAB8D0981}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{6A6235EC-58AC-4902-B033-46510379AC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6235EC-58AC-4902-B033-46510379AC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A6235EC-58AC-4902-B033-46510379AC75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03A2C006-8C6C-47A3-88AE-D56A2A498804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03A2C006-8C6C-47A3-88AE-D56A2A498804}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03A2C006-8C6C-47A3-88AE-D56A2A498804}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03A2C006-8C6C-47A3-88AE-D56A2A498804}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E974233-A40C-4CCF-A921-49FAAB8D0981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E974233-A40C-4CCF-A921-49FAAB8D0981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E974233-A40C-4CCF-A921-49FAAB8D0981}.Release|Any CPU.ActiveCfg = Release|Any CPU
