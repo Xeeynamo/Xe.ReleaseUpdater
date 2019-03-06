@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Xe.VersionCheck.GitHub</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xe.VersionCheck\Xe.VersionCheck.csproj" />
+    <ProjectReference Include="..\Xe.Http\Xe.Http.csproj" />
+  </ItemGroup>
+
+</Project>
