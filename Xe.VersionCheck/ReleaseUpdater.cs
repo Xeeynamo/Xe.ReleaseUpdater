@@ -33,7 +33,7 @@ namespace Xe.VersionCheck
 				return lastRelease;
 			}
 
-			return lastRelease;
+			return null;
 		}
     }
 }
